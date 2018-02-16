@@ -26,8 +26,8 @@ my_hash.each do |drink|
   drink_name = drink["strDrink"]
   drink_image = "http://"+drink["strDrinkThumb"]
   drink_id = drink["idDrink"]
-  c = Cocktail.create(name: drink_name, image: drink_image)
-
+  c = Cocktail.create(name: drink_name, remote_image_url: drink_image)
+  p c
 
   json = open("http://www.thecocktaildb.com/api/json/v1/1/lookup.php?i=#{drink_id}").read
   my_drink = JSON.parse(json)["drinks"][0]
@@ -41,7 +41,7 @@ my_hash.each do |drink|
     ingred = my_drink["strIngredient#{i}"]
     des = my_drink["strMeasure#{i}"]
     if ingred != "" && ingred != nil
-      p ingred
+      ingred
       # p des
       unless i = Ingredient.find_by_name(ingred)
         i = Ingredient.create(name: ingred)
@@ -49,7 +49,7 @@ my_hash.each do |drink|
       end
       data = {cocktail_id: c.id, ingredient_id: i.id, description: des}
       d = Dose.create(data)
-      p d.save
+      d.save
     end
   end
 end
