@@ -6,6 +6,17 @@ git_source(:github) do |repo_name|
 end
 
 
+
+###### FRONT END ######
+
+gem 'figaro'
+gem 'bootstrap-sass'
+gem 'font-awesome-sass'
+gem 'autoprefixer-rails'
+gem 'jquery-rails' # Add this line if you use Rails 5.1
+gem 'simple_form'
+gem 'cloudinary'
+
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '~> 5.1.5'
 # Use postgresql as the database for Active Record
