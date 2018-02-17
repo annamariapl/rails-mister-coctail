@@ -1,46 +1,48 @@
 <div class="container">
-	<div class="row">
-		<div class="col-xs-6 col-xs-offset-3">
-			<div class="cocktail-card">
+		<div class="row">
+			<div class="col-xs-6 col-xs-offset-3">
+				<div class="cocktail-card">
+					<h1>
+						<%= @cocktail.name %>
+					</h1>
+					<div class="cocktails-card-body">
 
-				<h1>
-					<%= @cocktail.name %>
-				</h1>
+						<div class="card-image">
+							<%= cl_image_tag @cocktail.image, height: 300, width: 400, crop: :fit %>
+						</div>
 
-				<div class="cocktails-card-body">
+						<div class="ingredients">
+							<% @cocktail.doses.each do |dose| %> 
+							<%= link_to dose_path(dose), method: :delete, data: { confirm: "Are you sure?"} do %>
+							<h3> <%= icon('fas', 'trash') %> 
+								<% end %> 
+								<%= dose.description %> of
+								<%= dose.ingredient.name %> </h3>
+								<% end %>
+								<%= link_to new_cocktail_dose_path(@cocktail) do %>
+								<%= icon('fas', 'plus') %>
+								<p class="small-text">add an ingredient</p>
+								<% end %>
 
-					<div class="ingredients">
-						<% @cocktail.doses.each do |dose| %> 
-						<%= link_to dose_path(dose), method: :delete, data: { confirm: "Are you sure?"} do %>
-						<h3> <%= icon('fas', 'trash') %> 
-							<% end %> 
-							<%= dose.description %> of
-							<%= dose.ingredient.name %> </h3>
-							<% end %>
-							<%= link_to new_cocktail_dose_path(@cocktail) do %>
-							<%= icon('fas', 'plus') %>
-							<p class="small-text">add an ingredient</p>
-							<% end %>
+							</div>
+
+
 
 						</div>
 
 
-
-
-
-
 					</div>
 
-
-				</div>
+					<!-- <#%= link_to "next cocktail", cocktail_path(@cocktail.next)  %> -->
 
 					<!-- 	<#%= cl_image_tag @cocktail.image, height: 300, width: 400, crop: :fill %>
 						<#%= @cocktail.image %> -->
-						<%= cl_image_tag @cocktail.image, height: 300, width: 400, crop: :fill %>
+						
 						<!-- 	<img src="<%#= @cocktail.image %>" alt="Drink Image"> -->
+
 					</div>
 				</div>
 			</div>
-
-
+		</div>
+	</div>
 
